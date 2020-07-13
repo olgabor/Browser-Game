@@ -11,3 +11,5 @@ Web Browser Game
 
 
 ### Wireframe
+![Game flow] 
+(https://github.com/olgabor/Browser-Game-/blob/master/Screen%20Shot%202020-07-12%20at%2022.51.55.png)
