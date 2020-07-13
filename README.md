@@ -1,2 +1,2 @@
-# Browser-Game-
+# Browser-Game
 Web Browser Game
