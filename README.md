@@ -8,3 +8,6 @@ Web Browser Game
 * user should click on second cell and if the second cell matches with a first one they both stay open 
 * whenever user chooses to open unmatched cells the both close out 
 * game is active until user will open up all cells
+
+
+### Wireframe
