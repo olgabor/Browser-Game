@@ -1,0 +1,144 @@
+/* Classes */
+
+.container{
+    display: flex; 
+    margin: 30px;
+    flex-wrap: wrap;
+    align-content: flex-start; 
+    width: 640px;
+    height: 640px;
+    margin: auto;
+}
+
+.button{
+  width: 140px;
+  height: 140px;
+  margin: 10px;
+  border-radius: 57px;
+  /* background: linear-gradient(145deg, #366244, #407551);
+  box-shadow:  26px 26px 52px #25422e, 
+             -26px -26px 52px #53986a; */ */
+}
+
+.squares div {
+  width:  5vh;
+  height: 5vh;
+  margin-right: 1%;
+  display: inline-block;
+  background-color: blue;
+}
+/* .button{ 
+  width: 140px;
+  margin: 10px;
+  border-radius: 57px;
+  background: linear-gradient(145deg, #366244, #407551);
+  box-shadow:  26px 26px 52px #25422e, 
+             -26px -26px 52px #53986a;
+} */
+/* .image{
+    width: 140px;
+    margin: 10px;
+    border-radius: 10px;
+} */
+img.disabled{
+    opacity:0.5;
+    width: 140px;
+    margin: 10px;
+    border-radius: 10px;
+    border-radius: 57px;
+    background: linear-gradient(145deg, #503662, #5f4075);
+    box-shadow:  26px 26px 52px #362542, 
+             -26px -26px 52px #7c5398;
+}
+
+img{
+  width: 140px;
+  height: 140px;
+  margin: 10px;
+  border-radius: 57px;
+  background: linear-gradient(145deg, #366244, #407551);
+  box-shadow:  26px 26px 52px #25422e, 
+             -26px -26px 52px #53986a;
+  
+}
+/* .card-front{
+
+} */
+
+
+/* .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 50px;
+  } */
+  /* .logo {
+    width: 250px;
+  } */
+
+/*   
+  .player-card {
+    width: 120px;
+    height: 170px;
+    margin: 25px;
+    transition: all 0.5s ease-in-out;
+  }
+  .player-card:hover {
+    transform: translateY(-10px);
+    transition: all 0.5s ease-in-out;
+  }
+  .cpu-card {
+    width: 120px;
+    height: 170px;
+    margin: 25px;
+    transition: all 0.5s ease-in-out;
+  }
+  .cpu-card:hover {
+    transform: translateY(-10px);
+    transition: all 0.5s ease-in-out;
+  } */
+  
+  /* .score-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 300;
+    cursor: default;
+  } */
+  /* .player-score {
+    margin: 30px;
+  }
+  .cpu-score {
+    margin: 30px;
+  } */
+  
+  /* .deal-button {
+    background-image: url(../images/dealbutton@3x.png);
+    width: 245px;
+    height: 93px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 20px;
+    transition: all 0.5s ease-in-out;
+  } */
+  
+  /* .deal-button:hover {
+    transition: all 0.5s ease-in-out;
+    transform: scale(1.1);
+  } */
+  
+  /* Default Selectors */
+  
+  body {
+    display: flex;
+    background-image: url('../images/aplle-orchard.jpg');
+    background-size: 100vw 100vh;
+    align-items: center;
+    flex-direction: column;
+  }
+  
