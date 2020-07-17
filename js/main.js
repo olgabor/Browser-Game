@@ -6,12 +6,14 @@ container.setAttribute('class', 'container')
 document.body.appendChild(container)
 
 //array for parsed images 
-faceSide =[]
+let faceSide =[]
+//clicked buttons 
+let clickedButtons = []
 
 //have the cells added to .container, function takes the number of cards needed to be added 
 const getCells = (number) => {
     for(let i = 1; i <=number; i ++){
-        let cell = document.createElement('button')
+        let cell = document.createElement('img')
         cell.src = '/Images/red_apples.jpg'
         cell.className = 'button'
         cell.value = i
@@ -29,7 +31,6 @@ container.addEventListener('click', () =>{
 
 const getCards= (num) =>{
     for(let i = 1; i <= num; i ++){
-        console.log(i)
         let img = document.createElement('img')
         img.setAttribute('src', `/Images/card${[i]}.jpg`)
         img.setAttribute('value', i)
@@ -48,22 +49,79 @@ const shuffle = (array) => {
         array[i] = array[j]
         array[j] = temp
     }  
-
-    console.log(faceSide)
 }
 shuffle(faceSide)
 
 
-const getImageFlipped = (event) => {
+//if elemets in the array equal --> true , else --> false 
+const arrayEqual = (array)=> {
+    if(array.length === 2 ){
+        return array[0].value === array[1].value }
 
-    // if click is somewhere on the container 
-    if( event.target === container){
-        //
-        // if button is clicked 
-    } else { 
-        event.target.innerHTML=`<img src="${faceSide[event.target.value - 1 ].src}"/>`
-    }
 }
+
+let clickedCards = 0
+let previousOpenedCard = []
+const getImageFlipped = (event) => {
+    if(clickedCards >= 2){
+        return
+    }
+    if( event.target === container){  
+    } 
+    else {
+        event.target.src = `${faceSide[event.target.value - 1 ].src}`
+        console.log(event.target.value)
+            if( clickedButtons.length === 0 ){
+                clickedButtons.push(event.target) 
+                console.log(clickedButtons[0].src)
+                previousOpenedCard = event.target
+                clickedCards += 1
+                console.log('start')
+                // console.log(previousOpenedCard)
+                // console.log(clickedButtons)
+                // console.log(clickedCards)
+
+            }
+            else if( (clickedButtons[0].src  === event.target.src ) && (clickedButtons[0] !== event.target)) {
+                clickedButtons[0].style.opacity =  0.5
+                event.target.style.opacity =  0.5 
+                clickedButtons = []
+                clickedCards = 0 
+                console.log('positive')
+                // console.log(previousOpenedCard)
+                console.log(clickedButtons)
+                // console.log(clickedCards)
+
+            } else if( ( clickedButtons[0].src !== event.target.src )) {
+
+                event.target.src = `${faceSide[event.target.value - 1 ].src}`
+                console.log(event.target.src)
+                setTimeout( () => {
+                    previousOpenedCard.src = "/Images/red_apples.jpg"
+                    event.target.src = '/Images/red_apples.jpg'
+                }, 500)
+                
+                // previousOpenedCard = 0
+                clickedButtons = []
+                clickedCards = 0
+                console.log('negative')
+                // console.log(previousOpenedCard)
+                // console.log(clickedButtons)
+                // console.log(clickedCards)
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 ///set the while loop 
     // if more than 2 event.target are clicked - stop listening events 

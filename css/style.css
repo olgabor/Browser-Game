@@ -15,9 +15,7 @@
   height: 140px;
   margin: 10px;
   border-radius: 57px;
-  /* background: linear-gradient(145deg, #366244, #407551);
-  box-shadow:  26px 26px 52px #25422e, 
-             -26px -26px 52px #53986a; */ */
+
 }
 
 .squares div {
@@ -40,15 +38,12 @@
     margin: 10px;
     border-radius: 10px;
 } */
-img.disabled{
+.disabeled{
     opacity:0.5;
     width: 140px;
+    height: 140px;
     margin: 10px;
-    border-radius: 10px;
     border-radius: 57px;
-    background: linear-gradient(145deg, #503662, #5f4075);
-    box-shadow:  26px 26px 52px #362542, 
-             -26px -26px 52px #7c5398;
 }
 
 img{
@@ -56,9 +51,7 @@ img{
   height: 140px;
   margin: 10px;
   border-radius: 57px;
-  background: linear-gradient(145deg, #366244, #407551);
-  box-shadow:  26px 26px 52px #25422e, 
-             -26px -26px 52px #53986a;
+
   
 }
 /* .card-front{
