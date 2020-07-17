@@ -2,13 +2,30 @@
 let container = document.createElement('div')
 container.setAttribute('class', 'container') 
 
-// append container element to DOM 
+//round Number
+let setRound = document.createElement('h1')
+setRound.style.className = ('round')
+setRound.style.color = 'crimson'
+// append container and round element to DOM 
 document.body.appendChild(container)
+document.body.append(setRound)
+setRound.innerHTML = ('Round ' + 1)
 
 //array for parsed images 
 let faceSide =[]
-//clicked buttons 
-let clickedButtons = []
+let currentlyClickedButton = [] //clicked buttons 
+let round =  0 
+let positive = 0
+let clickedCards = 0 
+let previousOpenedCard = []
+
+
+//user to click the button 
+container.addEventListener('click', () =>{
+    
+    getImageFlipped(event)
+    
+})
 
 //have the cells added to .container, function takes the number of cards needed to be added 
 const getCells = (number) => {
@@ -19,27 +36,17 @@ const getCells = (number) => {
         cell.value = i
         container.appendChild(cell)
     }
-};
-getCells(16)
-
-//user to click the button 
-container.addEventListener('click', () =>{
-    
-    getImageFlipped(event)
-    // getMatch(event)
-})
-
-const getCards= (num) =>{
-    for(let i = 1; i <= num; i ++){
-        let img = document.createElement('img')
-        img.setAttribute('src', `/Images/card${[i]}.jpg`)
-        img.setAttribute('value', i)
-        faceSide.push(img, img)
-    }
-    return faceSide 
 }
-
-getCards(8)
+//get a new function to remoce cells from container 
+const removeCells = () => {
+        let divContainer = document.querySelector('.container')
+        let child = divContainer.lastElementChild;  
+   
+        while (child) { 
+            divContainer.removeChild(child); 
+            child = divContainer.lastElementChild; 
+        }
+}
 
 //shuffle the array 
 const shuffle = (array) => {
@@ -50,102 +57,114 @@ const shuffle = (array) => {
         array[j] = temp
     }  
 }
-shuffle(faceSide)
 
-
-//if elemets in the array equal --> true , else --> false 
-const arrayEqual = (array)=> {
-    if(array.length === 2 ){
-        return array[0].value === array[1].value }
-
+//parse out images in the array 
+const getCards= (num) =>{
+    faceSide = []
+    for(let i = 1; i <= num; i ++){
+        let img = document.createElement('img')
+        img.setAttribute('src', `/Images/card${[i]}.jpg`)
+        img.setAttribute('value', i)
+        faceSide.push(img, img)
+    }
+    shuffle(faceSide)
+    return faceSide 
 }
 
-let clickedCards = 0
-let previousOpenedCard = []
+const newRound = (positive) => {
+
+    if (positive === 0 ){
+        getCells(12)
+        getCards(6)
+    }
+    
+    else if ((positive >= 6  ) && (positive <= 13  )) {
+        //clear the container every time new round starts 
+        removeCells()
+        getCells(16)
+        getCards(8)
+        round = 2
+        setRound.innerHTML = ('Round ' + round)
+        console.log(faceSide)
+    }
+    else if (positive === 14){
+        removeCells()
+        getCells(20)
+        getCards(10)
+        round  = 3 
+        setRound.innerHTML = ('Round ' + round)
+        console.log(faceSide)
+    }
+    if((positive >= 14  ) && (positive === 24  )){
+        console.log("this is a last condition  " ,  positive)
+        removeCells()
+        setRound.innerHTML = ("Game over" )
+    
+    }
+
+}
+newRound(positive)
+
+
 const getImageFlipped = (event) => {
+    
+    // more that 2 cards clicked - stop function from running 
     if(clickedCards >= 2){
         return
     }
+    //clicks outside the buttons are not listened 
     if( event.target === container){  
     } 
     else {
         event.target.src = `${faceSide[event.target.value - 1 ].src}`
-        console.log(event.target.value)
-            if( clickedButtons.length === 0 ){
-                clickedButtons.push(event.target) 
-                console.log(clickedButtons[0].src)
+           
+            //start the cards counted and write cards clicked to 
+            if( currentlyClickedButton.length === 0 ){
+                currentlyClickedButton.push(event.target) 
                 previousOpenedCard = event.target
                 clickedCards += 1
-                console.log('start')
-                // console.log(previousOpenedCard)
-                // console.log(clickedButtons)
-                // console.log(clickedCards)
 
             }
-            else if( (clickedButtons[0].src  === event.target.src ) && (clickedButtons[0] !== event.target)) {
-                clickedButtons[0].style.opacity =  0.5
-                event.target.style.opacity =  0.5 
-                clickedButtons = []
+            //positive scenario 
+            else if( (currentlyClickedButton[0].src  === event.target.src ) && (currentlyClickedButton[0] !== event.target)) {
+                currentlyClickedButton[0].style.opacity =  0.6
+                event.target.style.opacity =  0.6
+                currentlyClickedButton = []
                 clickedCards = 0 
-                console.log('positive')
-                // console.log(previousOpenedCard)
-                console.log(clickedButtons)
-                // console.log(clickedCards)
+                previousOpenedCard = []
+                positive ++
+                if (positive === 6){
 
-            } else if( ( clickedButtons[0].src !== event.target.src )) {
+                setTimeout( () => {
+                    newRound(positive)
+                }, 200) 
+               }
+               else if(positive === 14){
+                setTimeout( () => {
+                    newRound(positive)
+                }, 200) 
+                
+               }
+               else if(positive === 24){
+                setTimeout( () => {
+                    newRound(positive)
+                }, 200) 
+                
+               }
+
+            // negative scenario 
+            } else if(( currentlyClickedButton[0].src !== event.target.src ) &&(currentlyClickedButton[0] !== event.target)) {
 
                 event.target.src = `${faceSide[event.target.value - 1 ].src}`
-                console.log(event.target.src)
                 setTimeout( () => {
                     previousOpenedCard.src = "/Images/red_apples.jpg"
                     event.target.src = '/Images/red_apples.jpg'
-                }, 500)
-                
-                // previousOpenedCard = 0
-                clickedButtons = []
+                }, 300)
+                currentlyClickedButton = []
                 clickedCards = 0
-                console.log('negative')
-                // console.log(previousOpenedCard)
-                // console.log(clickedButtons)
-                // console.log(clickedCards)
+           
             }
         }
+
     }
 
-
-
-
-
-
-
-
-
-
-
-
-///set the while loop 
-    // if more than 2 event.target are clicked - stop listening events 
-    // compare the innerHTML.vlaues of both event.target elements 
-        // if match 
-            //add class name to the button and set opacity to 0 
-            //reset the counter for clicked elements 
-        //if no match 
-            //remove images from both event.target elements 
-            //reset the counter and continue 
-
-     
-            
-////this WHILE loop is not working !             
-// const getMatch = (event) => {
-
-//     numberClikedElements = 0
-//     while ( numberClikedElements <= 2 ){
-//         if( event.target === container){
-//             // 
-//         } else { 
-//             event.target.innerHTML=`<img src="${faceSide[event.target.value - 1 ].src}"/>`
-//             numberClikedElements++ 
-//         }
-//         console.log(numberClikedElements)     
-//     }
-// }
