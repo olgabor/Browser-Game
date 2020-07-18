@@ -8,9 +8,9 @@ setRound.style.className = ('round')
 setRound.style.color = 'crimson'
 // append container and round element to DOM 
 document.body.appendChild(container)
-document.body.append(setRound)
+// document.body.append(setRound)
 setRound.innerHTML = ('Round ' + 1)
-
+container.insertAdjacentElement("beforebegin" , setRound)
 //array for parsed images 
 let faceSide =[]
 let currentlyClickedButton = [] //clicked buttons 
@@ -31,7 +31,7 @@ container.addEventListener('click', () =>{
 const getCells = (number) => {
     for(let i = 1; i <=number; i ++){
         let cell = document.createElement('img')
-        cell.src = '/Images/red_apples.jpg'
+        cell.src = './Images/red_apples.jpg'
         cell.className = 'button'
         cell.value = i
         container.appendChild(cell)
@@ -63,7 +63,7 @@ const getCards= (num) =>{
     faceSide = []
     for(let i = 1; i <= num; i ++){
         let img = document.createElement('img')
-        img.setAttribute('src', `/Images/card${[i]}.jpg`)
+        img.setAttribute('src', `./Images/card${[i]}.jpg`)
         img.setAttribute('value', i)
         faceSide.push(img, img)
     }
@@ -85,7 +85,6 @@ const newRound = (positive) => {
         getCards(8)
         round = 2
         setRound.innerHTML = ('Round ' + round)
-        console.log(faceSide)
     }
     else if (positive === 14){
         removeCells()
@@ -93,7 +92,6 @@ const newRound = (positive) => {
         getCards(10)
         round  = 3 
         setRound.innerHTML = ('Round ' + round)
-        console.log(faceSide)
     }
     if((positive >= 14  ) && (positive === 24  )){
         console.log("this is a last condition  " ,  positive)
@@ -133,24 +131,20 @@ const getImageFlipped = (event) => {
                 clickedCards = 0 
                 previousOpenedCard = []
                 positive ++
-                if (positive === 6){
-
-                setTimeout( () => {
-                    newRound(positive)
-                }, 200) 
-               }
-               else if(positive === 14){
-                setTimeout( () => {
-                    newRound(positive)
-                }, 200) 
-                
-               }
-               else if(positive === 24){
-                setTimeout( () => {
-                    newRound(positive)
-                }, 200) 
-                
-               }
+                switch (setTimeout( () => {
+                            newRound(positive)
+                        }, 200)) {
+                    case 0:
+                        positive === 6;
+                      break;
+                    case 1:
+                        positive === 14;
+                      break;
+                    case 2:
+                        positive === 24;
+                      break;
+                    
+                  }
 
             // negative scenario 
             } else if(( currentlyClickedButton[0].src !== event.target.src ) &&(currentlyClickedButton[0] !== event.target)) {
@@ -162,7 +156,6 @@ const getImageFlipped = (event) => {
                 }, 300)
                 currentlyClickedButton = []
                 clickedCards = 0
-           
             }
         }
 
