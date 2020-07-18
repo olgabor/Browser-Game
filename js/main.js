@@ -19,7 +19,6 @@ let positive = 0
 let clickedCards = 0 
 let previousOpenedCard = []
 
-
 //user to click the button 
 container.addEventListener('click', () =>{
     
@@ -86,7 +85,7 @@ const newRound = (positive) => {
         round = 2
         setRound.innerHTML = ('Round ' + round)
     }
-    else if (positive === 14){
+    else if ((positive === 14) && (positive <= 23  )){
         removeCells()
         getCells(20)
         getCards(10)
@@ -131,19 +130,21 @@ const getImageFlipped = (event) => {
                 clickedCards = 0 
                 previousOpenedCard = []
                 positive ++
-                switch (setTimeout( () => {
+                console.log('positive' )
+          
+                switch (positive) {
+                    case  6 :
+                        setTimeout( () => {
                             newRound(positive)
-                        }, 200)) {
-                    case 0:
-                        positive === 6;
-                      break;
-                    case 1:
-                        positive === 14;
-                      break;
-                    case 2:
-                        positive === 24;
-                      break;
-                    
+                        }, 200)
+                    case 14:
+                        setTimeout( () => {
+                            newRound(positive)
+                        }, 200)
+                    case 24:
+                        setTimeout( () => {
+                            newRound(positive)
+                        }, 200)  
                   }
 
             // negative scenario 
@@ -151,8 +152,8 @@ const getImageFlipped = (event) => {
 
                 event.target.src = `${faceSide[event.target.value - 1 ].src}`
                 setTimeout( () => {
-                    previousOpenedCard.src = "/Images/red_apples.jpg"
-                    event.target.src = '/Images/red_apples.jpg'
+                    previousOpenedCard.src = "./Images/red_apples.jpg"
+                    event.target.src = "./Images/red_apples.jpg"
                 }, 300)
                 currentlyClickedButton = []
                 clickedCards = 0
