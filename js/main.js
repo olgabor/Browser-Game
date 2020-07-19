@@ -70,7 +70,7 @@ const getCards= (num) =>{
     faceSide = []
     for(let i = 1; i <= num; i ++){
         let img = document.createElement('img')
-        img.setAttribute('src', `./images/card${[i]}.jpg`)
+        img.setAttribute('src', `./Images/card${[i]}.jpg`)
         img.setAttribute('value', i)
         faceSide.push(img, img)
     }
