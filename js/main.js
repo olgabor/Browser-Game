@@ -38,7 +38,7 @@ container.addEventListener('click', () =>{
 const getCells = (number) => {
     for(let i = 1; i <=number; i ++){
         let cell = document.createElement('img')
-        cell.src = 'images/images1.jpeg'
+        cell.src = 'images/cover.jpeg'
         cell.className = 'button'
         cell.value = i
         container.appendChild(cell)
@@ -118,6 +118,9 @@ const getImageFlipped = (event) => {
     if(clickedCards >= 2){
         return
     }
+    // if(currentlyClickedButton[0].src === `${faceSide[event.target.value - 1 ].src}`){
+    //     return  
+    // }
     //clicks outside the buttons are not listened 
     if(event.target === container){  
     } 
@@ -161,8 +164,8 @@ const getImageFlipped = (event) => {
 
                 event.target.src = `${faceSide[event.target.value - 1 ].src}`
                 setTimeout( () => {
-                    previousOpenedCard.src = "images/images1.jpeg"
-                    event.target.src = "images/images1.jpeg"
+                    previousOpenedCard.src = "images/cover.jpeg"
+                    event.target.src = "images/cover.jpeg"
                 }, 300)
                 currentlyClickedButton = []
                 clickedCards = 0

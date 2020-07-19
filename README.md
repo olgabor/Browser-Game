@@ -12,3 +12,4 @@ Web Browser Game
 
 ### Wireframe
 ![Image of flow](https://github.com/olgabor/Browser-Game-/blob/master/Images/Flow.png)
+
