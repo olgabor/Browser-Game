@@ -21,4 +21,5 @@ Here is snapshot of first round
 ### Wireframe
 ![Image of flow](https://github.com/olgabor/Browser-Game/blob/master/Images/Flow.png)
 
-Let's practice your memory!
+Let's practice your memory! https://olgabor.github.io/Browser-Game/
+
